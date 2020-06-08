@@ -54,7 +54,7 @@ surrogate_codepoints = (0xd800, 0xdfff)
 
 def fetch(f):
     if not os.path.exists(os.path.basename(f)):
-        os.system("curl -O http://www.unicode.org/Public/UNIDATA/%s"
+        os.system("curl -#O http://www.unicode.org/Public/UNIDATA/%s"
                   % f)
 
     if not os.path.exists(os.path.basename(f)):
@@ -306,9 +306,8 @@ pub const UNICODE_VERSION: (u64, u64, u64) = (%s, %s, %s);
         # get widths, except those that are explicitly marked zero-width above
         ea_widths = load_east_asian_width(["W", "F", "A"], ["Me", "Mn", "Cf"])
         # these are doublewidth
-        for dwcat in ["W", "F"]:
+        for dwcat in ["W", "F", "A"]:
             width_table.extend([(lo_hi1[0], lo_hi1[1], 2, 2) for lo_hi1 in ea_widths[dwcat]])
-        width_table.extend([(lo_hi2[0], lo_hi2[1], 1, 2) for lo_hi2 in ea_widths["A"]])
 
         width_table.sort(key=lambda w: w[0])
 
