@@ -104,7 +104,7 @@ fn test_str() {
     assert_eq!("\0\0\0\x01\x01".width_cjk(), 0);
     assert_eq!(UnicodeWidthStr::width(""), 0);
     assert_eq!("".width_cjk(), 0);
-    assert_eq!(UnicodeWidthStr::width("\u{2081}\u{2082}\u{2083}\u{2084}"), 4);
+    assert_eq!(UnicodeWidthStr::width("\u{2081}\u{2082}\u{2083}\u{2084}"), 8);
     assert_eq!("\u{2081}\u{2082}\u{2083}\u{2084}".width_cjk(), 8);
 }
 
@@ -130,7 +130,7 @@ fn test_char() {
     assert_eq!('\x00'.width_cjk(), Some(0));
     assert_eq!(UnicodeWidthChar::width('\x01'), None);
     assert_eq!('\x01'.width_cjk(), None);
-    assert_eq!(UnicodeWidthChar::width('\u{2081}'), Some(1));
+    assert_eq!(UnicodeWidthChar::width('\u{2081}'), Some(2));
     assert_eq!('\u{2081}'.width_cjk(), Some(2));
 }
 
@@ -155,11 +155,11 @@ fn test_char2() {
     assert_eq!(UnicodeWidthChar::width('\u{AD}'),Some(1));
     assert_eq!('\u{AD}'.width_cjk(),Some(1));
 
-    assert_eq!(UnicodeWidthChar::width('\u{1160}'),Some(0));
-    assert_eq!('\u{1160}'.width_cjk(),Some(0));
+    assert_eq!(UnicodeWidthChar::width('\u{1160}'),Some(1));
+    assert_eq!('\u{1160}'.width_cjk(),Some(1));
 
     assert_eq!(UnicodeWidthChar::width('\u{a1}'),Some(1));
-    assert_eq!('\u{a1}'.width_cjk(),Some(2));
+    assert_eq!('\u{a1}'.width_cjk(),Some(1));
 
     assert_eq!(UnicodeWidthChar::width('\u{300}'),Some(0));
     assert_eq!('\u{300}'.width_cjk(),Some(0));
