@@ -89,7 +89,7 @@ pub trait UnicodeWidthChar {
 
 impl UnicodeWidthChar for char {
     #[inline]
-    fn width(self) -> Option<usize> { cw::width(self, false) }
+    fn width(self) -> Option<usize> { cw::width(self, true) }
 
     #[inline]
     fn width_cjk(self) -> Option<usize> { cw::width(self, true) }
@@ -121,7 +121,7 @@ pub trait UnicodeWidthStr {
 impl UnicodeWidthStr for str {
     #[inline]
     fn width(&self) -> usize {
-        self.chars().map(|c| cw::width(c, false).unwrap_or(0)).fold(0, Add::add)
+        self.chars().map(|c| cw::width(c, true).unwrap_or(0)).fold(0, Add::add)
     }
 
     #[inline]
